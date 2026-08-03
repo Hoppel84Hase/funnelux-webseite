@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { HeroParticlesLoader } from "@/components/home/HeroParticlesLoader";
 import { company } from "@/content/company";
 
 const trustPoints = [
@@ -13,6 +14,7 @@ export function Hero() {
     <section className="relative overflow-hidden border-b border-border">
       <div className="absolute inset-0 bg-hero-glow" aria-hidden="true" />
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
+      <HeroParticlesLoader />
 
       <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8">
         <p className="mx-auto mb-6 inline-block rounded-full border border-border-strong bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent-light">

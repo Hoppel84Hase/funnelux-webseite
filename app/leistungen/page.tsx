@@ -22,7 +22,7 @@ export default function LeistungenPage() {
         <SectionHeading
           as="h1"
           eyebrow="Leistungen"
-          title="Alles, was für planbare Anfragen nötig ist"
+          title="Alles für planbare Anfragen"
           subtitle="Website und Funnel als Kernleistung, ergänzt durch Ads, SEO und Copywriting, wo es für dein Vorhaben Sinn ergibt."
         />
       </section>

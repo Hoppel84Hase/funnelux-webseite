@@ -1,6 +1,6 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Card } from "@/components/ui/Card";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { ProblemScrollCard } from "@/components/home/ProblemScrollCard";
 import { problemCards } from "@/content/problems";
 
 export function Problem() {
@@ -9,16 +9,13 @@ export function Problem() {
       <SectionHeading
         eyebrow="Kommt dir bekannt vor?"
         title="Drei Situationen, die ich oft sehe"
-        subtitle="Meistens beginnt es mit einem dieser drei Punkte."
+        subtitle="Meistens beginnt es mit einem dieser drei Punkte, und so wird daraus eine Lösung."
       />
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {problemCards.map((card, index) => (
           <FadeIn key={card.title} delay={index * 100}>
-            <Card className="h-full">
-              <h3 className="text-lg font-semibold text-text-primary">{card.title}</h3>
-              <p className="mt-3 text-sm text-text-secondary">{card.description}</p>
-            </Card>
+            <ProblemScrollCard card={card} />
           </FadeIn>
         ))}
       </div>

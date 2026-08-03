@@ -26,7 +26,12 @@ const CookieConsentContext = createContext<CookieConsentContextValue | null>(nul
 export function CookieConsentProvider({ children }: { children: React.ReactNode }) {
   const [consent, setConsent] = useState<ConsentState>(defaultConsentState);
   const [hasDecided, setHasDecided] = useState(false);
-  const [bannerVisible, setBannerVisible] = useState(false);
+  // Startet sichtbar (statt erst nach einem Client-Check), damit der Banner
+  // ohne Verzoegerung mitgerendert wird und nicht nachtraeglich als spaetes,
+  // grosses Element den Largest Contentful Paint verzoegert. Fuer
+  // wiederkehrende Besucher mit bereits gespeicherter Entscheidung wird er
+  // im Effekt unten sofort wieder ausgeblendet.
+  const [bannerVisible, setBannerVisible] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
 
   useEffect(() => {
@@ -35,8 +40,6 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
       setConsent(stored);
       setHasDecided(true);
       setBannerVisible(false);
-    } else {
-      setBannerVisible(true);
     }
   }, []);
 

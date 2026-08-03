@@ -50,7 +50,11 @@ export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
     <div
       ref={ref}
       style={{ animationDelay: status === "revealing" ? `${delay}ms` : undefined }}
-      className={cn(status === "hidden" && "opacity-0", status === "revealing" && "animate-fade-up", className)}
+      className={cn(
+        status === "hidden" && "opacity-0",
+        status === "revealing" && "motion-safe:animate-fade-up motion-reduce:animate-fade-in",
+        className
+      )}
     >
       {children}
     </div>

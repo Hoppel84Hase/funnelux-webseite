@@ -17,7 +17,10 @@ export function Pricing() {
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {pricingPackages.map((pkg, index) => (
           <FadeIn key={pkg.name} delay={index * 100}>
-            <Card className={cn("flex h-full flex-col", pkg.highlight && "border-border-strong shadow-glow-sm")}>
+            <Card
+              glass
+              className={cn("flex h-full flex-col", pkg.highlight && "border-border-strong shadow-glow-sm")}
+            >
               <h3 className="text-lg font-semibold text-text-primary">{pkg.name}</h3>
               <p className="mt-2 text-2xl font-bold text-accent-light">{pkg.priceLabel}</p>
               <p className="mt-3 text-sm text-text-secondary">{pkg.description}</p>

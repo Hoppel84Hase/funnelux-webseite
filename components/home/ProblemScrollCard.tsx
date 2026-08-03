@@ -1,0 +1,98 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { Card } from "@/components/ui/Card";
+import { useReducedMotion } from "@/lib/useReducedMotion";
+import { cn } from "@/lib/cn";
+import type { ProblemCard } from "@/content/problems";
+
+// GSAP/ScrollTrigger werden erst per dynamischem Import nachgeladen, sobald
+// diese Karte gebraucht wird, damit sie nicht das initiale Laden der
+// Startseite (LCP) belasten. Bei prefers-reduced-motion wird gar kein GSAP
+// geladen, sondern ein reiner CSS-Fade verwendet.
+export function ProblemScrollCard({ card }: { card: ProblemCard }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const problemRef = useRef<HTMLParagraphElement>(null);
+  const solutionRef = useRef<HTMLParagraphElement>(null);
+  const reducedMotion = useReducedMotion();
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const cardEl = cardRef.current;
+    const problemEl = problemRef.current;
+    const solutionEl = solutionRef.current;
+    if (!cardEl || !problemEl || !solutionEl) return;
+
+    if (reducedMotion) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setRevealed(true);
+              observer.disconnect();
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      observer.observe(cardEl);
+      return () => observer.disconnect();
+    }
+
+    let cancelled = false;
+    let trigger: { kill: () => void } | undefined;
+
+    import("gsap").then(({ gsap }) =>
+      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+        if (cancelled) return;
+        gsap.registerPlugin(ScrollTrigger);
+        trigger = ScrollTrigger.create({
+          trigger: cardEl,
+          start: "top 75%",
+          end: "top 30%",
+          scrub: true,
+          onUpdate: (self) => {
+            gsap.set(problemEl, { opacity: 1 - self.progress, y: -self.progress * 8 });
+            gsap.set(solutionEl, { opacity: self.progress, y: (1 - self.progress) * 8 });
+          },
+        });
+      })
+    );
+
+    return () => {
+      cancelled = true;
+      trigger?.kill();
+    };
+  }, [reducedMotion]);
+
+  const problemOpacity = reducedMotion ? (revealed ? "opacity-0" : "opacity-100") : "";
+  const solutionOpacity = reducedMotion ? (revealed ? "opacity-100" : "opacity-0") : "opacity-0";
+
+  return (
+    <Card ref={cardRef} className="h-full">
+      <h3 className="text-lg font-semibold text-text-primary">{card.title}</h3>
+      <div className="relative mt-3 grid">
+        <p
+          ref={problemRef}
+          className={cn(
+            "col-start-1 row-start-1 text-sm text-text-secondary",
+            reducedMotion && "transition-opacity duration-500",
+            problemOpacity
+          )}
+        >
+          {card.description}
+        </p>
+        <p
+          ref={solutionRef}
+          className={cn(
+            "col-start-1 row-start-1 text-sm font-medium text-accent-light",
+            reducedMotion && "transition-opacity duration-500",
+            solutionOpacity
+          )}
+        >
+          {card.solution}
+        </p>
+      </div>
+    </Card>
+  );
+}
