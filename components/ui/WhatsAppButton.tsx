@@ -33,7 +33,7 @@ export function WhatsAppButton({
         "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap",
         sizeClasses[size],
         variant === "solid"
-          ? "bg-whatsapp text-white hover:bg-whatsapp-dark shadow-[0_0_30px_-12px_rgba(37,211,102,0.6)]"
+          ? "bg-whatsapp text-background hover:bg-whatsapp-dark"
           : "border border-whatsapp text-whatsapp hover:bg-whatsapp/10",
         className
       )}

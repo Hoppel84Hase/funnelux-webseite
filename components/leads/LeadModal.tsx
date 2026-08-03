@@ -125,7 +125,7 @@ export function LeadModal() {
 
               <button
                 type="submit"
-                className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark"
+                className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-whatsapp-dark"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 Weiter zu WhatsApp
