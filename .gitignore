@@ -31,3 +31,4 @@ next-env.d.ts
 # unbenutzte Rohdaten-Assets (Logo bereits in public/images/ aufbereitet)
 /(1)logo/
 /hf_2026*.svg
+.env*
