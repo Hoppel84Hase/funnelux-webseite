@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { company } from "@/content/company";
 
 const trustPoints = [
   "Direktkontakt: Du sprichst mit mir, nicht mit einem Account Manager",
@@ -14,6 +15,9 @@ export function Hero() {
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8">
+        <p className="mx-auto mb-6 inline-block rounded-full border border-border-strong bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent-light">
+          {company.claim}
+        </p>
         <h1 className="text-4xl font-bold tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
           Websites und Funnels, die aus Besuchern Anfragen machen.
         </h1>

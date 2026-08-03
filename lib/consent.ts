@@ -55,6 +55,10 @@ export function trackWhatsAppClick(section: string) {
   pushDataLayer({ event: "whatsapp_click", whatsapp_section: section });
 }
 
+export function trackLeadFormSubmit(section: string, utm: Record<string, unknown> = {}) {
+  pushDataLayer({ event: "lead_form_submit", lead_section: section, ...utm });
+}
+
 declare global {
   interface Window {
     dataLayer: Record<string, unknown>[];

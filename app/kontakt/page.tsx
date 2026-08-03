@@ -25,7 +25,7 @@ export default function KontaktPage() {
         as="h1"
         eyebrow="Kontakt"
         title="Schreib mir, wir klären den Rest gemeinsam"
-        subtitle="Ein Kontaktformular gibt es bewusst nicht. Der direkte Weg ist schneller."
+        subtitle="Trag kurz deine Kontaktdaten ein, danach öffnet sich WhatsApp mit einer vorausgefüllten Nachricht an mich."
       />
 
       <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">

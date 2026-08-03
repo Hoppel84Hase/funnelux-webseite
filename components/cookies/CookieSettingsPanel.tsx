@@ -100,7 +100,7 @@ type ConsentRowProps = {
 
 function ConsentRow({ title, description, checked, disabled, onChange }: ConsentRowProps) {
   return (
-    <div className="flex items-start justify-between gap-4 rounded-xl border border-border bg-background/40 p-4">
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-background/40 p-4">
       <div>
         <p className="text-sm font-medium text-text-primary">{title}</p>
         <p className="mt-1 text-xs text-text-secondary">{description}</p>
@@ -113,17 +113,27 @@ function ConsentRow({ title, description, checked, disabled, onChange }: Consent
         disabled={disabled}
         onClick={() => onChange?.(!checked)}
         className={cn(
-          "relative h-6 w-11 shrink-0 rounded-full transition-colors",
-          checked ? "bg-accent" : "bg-white/10",
-          disabled && "cursor-not-allowed opacity-60"
+          "relative inline-flex h-8 w-14 shrink-0 items-center rounded-full border transition-colors duration-200",
+          checked ? "border-accent bg-accent shadow-glow-sm" : "border-border-strong bg-white/10",
+          disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
         )}
       >
         <span
           className={cn(
-            "absolute top-0.5 h-5 w-5 rounded-full bg-white transition-transform",
-            checked ? "translate-x-5" : "translate-x-0.5"
+            "absolute left-1 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-200",
+            checked ? "translate-x-6" : "translate-x-0"
           )}
-        />
+        >
+          {checked ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="3" className="h-3.5 w-3.5" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8b90a5" strokeWidth="3" className="h-3.5 w-3.5" aria-hidden="true">
+              <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          )}
+        </span>
       </button>
     </div>
   );

@@ -1,13 +1,11 @@
 "use client";
 
-import { buildWhatsAppLink, whatsappDefaultMessage } from "@/content/company";
-import { trackWhatsAppClick } from "@/lib/consent";
+import { useLeadModal } from "@/components/leads/LeadModalProvider";
 import { cn } from "@/lib/cn";
 
 type WhatsAppButtonProps = {
   section: string;
   label?: string;
-  message?: string;
   size?: "md" | "lg";
   variant?: "solid" | "outline";
   className?: string;
@@ -21,19 +19,16 @@ const sizeClasses = {
 export function WhatsAppButton({
   section,
   label = "Jetzt Kontakt aufnehmen",
-  message = whatsappDefaultMessage,
   size = "md",
   variant = "solid",
   className,
 }: WhatsAppButtonProps) {
-  const href = buildWhatsAppLink(message);
+  const { openModal } = useLeadModal();
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={() => trackWhatsAppClick(section)}
+    <button
+      type="button"
+      onClick={() => openModal(section)}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap",
         sizeClasses[size],
@@ -45,7 +40,7 @@ export function WhatsAppButton({
     >
       <WhatsAppIcon className="h-4 w-4" />
       {label}
-    </a>
+    </button>
   );
 }
 

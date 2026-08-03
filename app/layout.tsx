@@ -8,6 +8,8 @@ import { CookieBanner } from "@/components/cookies/CookieBanner";
 import { CookieSettingsPanel } from "@/components/cookies/CookieSettingsPanel";
 import { GTMLoader } from "@/components/cookies/GTMLoader";
 import { UtmCapture } from "@/components/cookies/UtmCapture";
+import { LeadModalProvider } from "@/components/leads/LeadModalProvider";
+import { LeadModal } from "@/components/leads/LeadModal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { company } from "@/content/company";
 
@@ -42,13 +44,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-screen flex-col font-sans">
         <JsonLd />
         <CookieConsentProvider>
-          <UtmCapture />
-          <GTMLoader />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CookieBanner />
-          <CookieSettingsPanel />
+          <LeadModalProvider>
+            <UtmCapture />
+            <GTMLoader />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <CookieBanner />
+            <CookieSettingsPanel />
+            <LeadModal />
+          </LeadModalProvider>
         </CookieConsentProvider>
       </body>
     </html>
