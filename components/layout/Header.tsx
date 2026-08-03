@@ -19,8 +19,8 @@ export function Header() {
           <Image
             src="/images/logo-dark.webp"
             alt="Funnelux Marketing"
-            width={156}
-            height={40}
+            width={216}
+            height={55}
             priority
           />
         </Link>

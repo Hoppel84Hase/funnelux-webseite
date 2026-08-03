@@ -14,7 +14,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Image src="/images/logo-dark.webp" alt="Funnelux Marketing" width={156} height={40} />
+            <Image src="/images/logo-dark.webp" alt="Funnelux Marketing" width={216} height={55} />
             <p className="mt-4 text-sm font-medium text-accent-light">{company.claim}</p>
             <p className="mt-2 max-w-sm text-sm text-text-secondary">
               Websites und Funnels für Schweizer KMU und Start-ups. Ein Ansprechpartner, direkter Kontakt,
