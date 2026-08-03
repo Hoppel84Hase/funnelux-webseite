@@ -32,7 +32,7 @@ export function HeroParticlesLoader() {
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
     if (typeof window.requestIdleCallback === "function") {
-      idleId = window.requestIdleCallback(() => setShouldLoad(true));
+      idleId = window.requestIdleCallback(() => setShouldLoad(true), { timeout: 2000 });
     } else {
       timeoutId = setTimeout(() => setShouldLoad(true), 300);
     }
