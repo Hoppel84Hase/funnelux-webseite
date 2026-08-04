@@ -27,22 +27,11 @@ export function HeroParticlesLoader() {
       return;
     }
 
-    // Erst nach dem ersten Paint laden, damit der Hero-Text sofort steht.
-    let idleId: number | undefined;
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-    if (typeof window.requestIdleCallback === "function") {
-      idleId = window.requestIdleCallback(() => setShouldLoad(true), { timeout: 2000 });
-    } else {
-      timeoutId = setTimeout(() => setShouldLoad(true), 300);
-    }
-
-    return () => {
-      if (idleId !== undefined && typeof window.cancelIdleCallback === "function") {
-        window.cancelIdleCallback(idleId);
-      }
-      if (timeoutId !== undefined) clearTimeout(timeoutId);
-    };
+    // useEffect laeuft ohnehin erst nach dem ersten Paint, der Hero-Text
+    // steht also schon. Ein zusaetzliches requestIdleCallback (bis zu 2s
+    // Wartezeit) hat das Partikel-Netz nur unnoetig spaet aufploppen lassen,
+    // deshalb wird der Import jetzt direkt angestossen.
+    setShouldLoad(true);
   }, []);
 
   if (!shouldLoad) return null;

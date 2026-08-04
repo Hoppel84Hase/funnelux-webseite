@@ -43,12 +43,12 @@ const config: Config = {
         grid: "48px 48px",
       },
       animation: {
-        "fade-up": "fadeUp 0.7s ease-out forwards",
-        "fade-in": "fadeIn 0.6s ease-out forwards",
+        "fade-up": "fadeUp 1s ease-out forwards",
+        "fade-in": "fadeIn 0.9s ease-out forwards",
       },
       keyframes: {
         fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "0%": { opacity: "0", transform: "translateY(28px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         fadeIn: {

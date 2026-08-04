@@ -31,6 +31,17 @@ export function HeroParticles() {
     renderer.domElement.style.display = "block";
     container.appendChild(renderer.domElement);
 
+    // Sanft einblenden statt abrupt aufzuploppen, sobald das Canvas bereit
+    // ist. Doppeltes rAF, damit der Browser den opacity:0 Ausgangszustand
+    // sicher gemalt hat, bevor die Transition startet.
+    container.style.opacity = "0";
+    container.style.transition = "opacity 900ms ease-out";
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        container.style.opacity = "1";
+      });
+    });
+
     const bounds = { x: 24, y: 14 };
     const positions = new Float32Array(PARTICLE_COUNT * 3);
     const velocities: THREE.Vector2[] = [];
