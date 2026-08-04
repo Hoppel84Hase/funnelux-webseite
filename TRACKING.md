@@ -42,19 +42,41 @@ Die Seite pusht folgende Events in `window.dataLayer`:
 
 ## 4. Meta Pixel im GTM-Interface anlegen
 
-Der Meta Pixel läuft ausschliesslich über GTM, nicht direkt im Code:
+Der Meta Pixel läuft ausschliesslich über GTM, nicht direkt im Code. Wichtig: **Kein Tag darf den Trigger
+"All Pages" verwenden**, das feuert immer, sobald der Container lädt, unabhängig vom Consent-Status, und
+hebelt damit die ganze Consent-Sperre aus (das war ein realer Bug in einer früheren Version des Setups).
+Seit dem Fix in `CookieConsentProvider.tsx` wird der aktuelle Consent-Status bei jedem Seitenaufruf früh in
+den dataLayer gepusht, auch für wiederkehrende Besucher mit bereits gespeicherter Entscheidung. Die
+Custom-Event-Trigger unten funktionieren dadurch zuverlässig, ganz ohne Zusatzkonstruktion.
 
-1. Im GTM-Container einen neuen Tag vom Typ **Meta Pixel** anlegen (oder einen Custom-HTML-Tag mit dem
-   Standard-Pixel-Snippet, falls kein vorgefertigter Tag-Typ verwendet wird).
-2. Als Pixel-ID den Platzhalter `PIXEL_ID` durch die echte Meta-Pixel-ID ersetzen.
-3. Als Trigger einen **Custom Event** Trigger auf das Event `consent_marketing_granted` setzen, damit der Tag
-   nur feuert, wenn Marketing-Zustimmung vorliegt.
-4. Für den PageView-Trigger zusätzlich einen zweiten Trigger auf **All Pages** setzen, aber mit der Bedingung,
-   dass `consent_marketing_granted` bereits vorher gefeuert hat (z. B. über eine GTM-Variable, die den
-   aktuellen Consent-Status aus dem dataLayer liest), oder alternativ den Tag ausschliesslich über den
-   Custom-Event-Trigger auslösen und dafür sorgen, dass bei jedem Seitenwechsel (Route-Wechsel in Next.js)
-   erneut ein `consent_marketing_granted`-Event gepusht wird, falls die Zustimmung bereits vorher erteilt
-   wurde.
+**Schritt 1: Data Layer Variable anlegen** (einmalig, wird für den Lead-Trigger gebraucht)
+
+Variablen → Neu → Variablenkonfiguration → **Data Layer-Variable** → Name der Data Layer-Variable:
+`consent_marketing` → Data Layer-Version: Version 2 → Speichern unter dem Namen `DLV - consent_marketing`.
+
+**Schritt 2: Zwei Trigger anlegen**
+
+- **"Marketing Consent Granted"**: Trigger-Typ **Benutzerdefiniertes Ereignis**, Ereignisname
+  `consent_marketing_granted`. Kein zusätzliches Filter nötig, dieses Event existiert nur, wenn Marketing
+  zugestimmt wurde.
+- **"Lead Submit (Marketing Consent)"**: Trigger-Typ **Benutzerdefiniertes Ereignis**, Ereignisname
+  `lead_form_submit`, dieser Trigger löst aus bei **einigen benutzerdefinierten Ereignissen**, Bedingung:
+  `{{DLV - consent_marketing}}` **entspricht** `true`. Die Zusatzbedingung ist hier nötig, weil das
+  Lead-Formular unabhängig vom Consent-Status abgeschickt werden kann.
+
+**Schritt 3: Zwei Tags anlegen**
+
+1. Tag vom Typ **Meta Pixel** (oder Custom-HTML mit dem Standard-Pixel-Snippet) für das PageView-Event,
+   Pixel-ID eintragen, Trigger: nur **"Marketing Consent Granted"**.
+2. Zweiter Tag vom Typ **Meta Pixel** für das Lead-Event (z. B. `Lead` oder `CompleteRegistration`),
+   gleiche Pixel-ID, Trigger: nur **"Lead Submit (Marketing Consent)"**.
+
+**Schritt 4: Vor dem Veröffentlichen testen**
+
+Über **"In Vorschau ansehen"** direkt aus GTM heraus starten (nicht die Vorschau-URL manuell aufrufen).
+Prüfen: Ablehnen → kein Pixel-Request. Nur Statistik zustimmen → kein Pixel-Request. Marketing zustimmen →
+PageView-Pixel feuert einmalig. Seite neu laden nach Zustimmung → PageView-Pixel feuert erneut. Lead-Formular
+nach reiner Statistik-Zustimmung absenden → Lead-Pixel feuert nicht. Erst danach **Senden** (veröffentlichen).
 
 ## 5. Google Analytics / Statistik-Tag anlegen
 
