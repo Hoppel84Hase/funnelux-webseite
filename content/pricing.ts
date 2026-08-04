@@ -34,7 +34,7 @@ export const pricingPackages: PricingPackage[] = [
   },
   {
     name: "Care",
-    priceLabel: "ab CHF 1'000 pro Monat",
+    priceLabel: "ab CHF 1'000 mtl.",
     description:
       "Für Firmen, deren Seite nicht nur laufen, sondern jeden Monat besser werden soll. Ich werte aus, optimiere und du konzentrierst dich auf dein Kerngeschäft.",
     features: [
