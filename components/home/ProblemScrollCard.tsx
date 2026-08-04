@@ -57,8 +57,20 @@ export function ProblemScrollCard({ card }: { card: ProblemCard }) {
           end: "top 15%",
           scrub: 0.6,
           onUpdate: (self) => {
-            gsap.set(problemEl, { opacity: 1 - self.progress, y: -self.progress * 8 });
-            gsap.set(solutionEl, { opacity: self.progress, y: (1 - self.progress) * 8 });
+            // Sequenziell statt ueberblendend: Problem-Text blendet zuerst
+            // komplett aus (erste Haelfte), erst danach blendet der
+            // Loesungs-Text ein (zweite Haelfte). So sind beide Texte nie
+            // gleichzeitig sichtbar, kein "Geister"-Overlap mehr.
+            const p = self.progress;
+            if (p < 0.5) {
+              const local = p / 0.5;
+              gsap.set(problemEl, { opacity: 1 - local, y: -local * 8 });
+              gsap.set(solutionEl, { opacity: 0, y: 8 });
+            } else {
+              const local = (p - 0.5) / 0.5;
+              gsap.set(problemEl, { opacity: 0, y: -8 });
+              gsap.set(solutionEl, { opacity: local, y: 8 - local * 8 });
+            }
           },
         });
         refresh = () => ScrollTrigger.refresh();
