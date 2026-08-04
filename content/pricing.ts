@@ -9,7 +9,7 @@ export type PricingPackage = {
 export const pricingPackages: PricingPackage[] = [
   {
     name: "Website",
-    priceLabel: "ab CHF 1'900",
+    priceLabel: "ab CHF 2'800",
     description: "Die Basis für deinen Auftritt. Klar strukturiert, schnell und für Google gebaut.",
     features: [
       "Konzept und Struktur für deine Seite",
@@ -21,7 +21,7 @@ export const pricingPackages: PricingPackage[] = [
   },
   {
     name: "Funnel",
-    priceLabel: "ab CHF 2'900",
+    priceLabel: "ab CHF 5'000",
     description: "Für Angebote, die aktiv Anfragen generieren sollen, mit klarer Strecke von Klick zu Kontakt.",
     features: [
       "Landing Page mit klarer Storyline",
@@ -34,16 +34,20 @@ export const pricingPackages: PricingPackage[] = [
   },
   {
     name: "Care",
-    priceLabel: "CHF 190 pro Monat",
-    description: "Laufende Betreuung, damit deine Seite aktuell bleibt und du dich um dein Kerngeschäft kümmern kannst.",
+    priceLabel: "ab CHF 1'000 pro Monat",
+    description:
+      "Für Firmen, deren Seite nicht nur laufen, sondern jeden Monat besser werden soll. Ich werte aus, optimiere und du konzentrierst dich auf dein Kerngeschäft.",
     features: [
-      "Updates und technische Wartung",
-      "Inhaltliche Anpassungen nach Absprache",
-      "Monatliche Auswertung der Zahlen",
-      "Prioritärer Support bei Fragen",
+      "Laufende Auswertung deiner Zahlen mit monatlichem Kurzbericht",
+      "Optimierung von Seiten, Texten und Conversion-Strecke auf Basis der Daten",
+      "Anpassungen und neue Inhalte nach Absprache",
+      "Technische Wartung, Updates und Monitoring",
+      "Prioritärer Support mit Antwort innert 24 Stunden",
     ],
   },
 ];
 
+export const pricingMicrocopy = "Pauschalpreis nach Fixofferte";
+
 export const pricingNote =
-  "Die genannten Preise sind Richtwerte. Die Fixofferte erhältst du nach einem kostenlosen Erstgespräch, ohne versteckte Kosten.";
+  "Die Preise sind Richtwerte und richten sich nach deinem Vorhaben. Abgerechnet wird immer pauschal: Du kennst den Gesamtpreis vor dem Start und er ändert sich während des Projekts nicht.";

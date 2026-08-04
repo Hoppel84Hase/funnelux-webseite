@@ -7,7 +7,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Was kostet eine Website wirklich?",
     answer:
-      "Eine Website bei mir startet ab CHF 1'900. Der genaue Preis hängt vom Umfang ab, also der Anzahl Seiten und Funktionen. Nach dem kostenlosen Erstgespräch bekommst du eine Fixofferte, damit du weisst, woran du bist.",
+      "Eine Website bei mir startet ab CHF 2'800. Der genaue Preis hängt vom Umfang ab, also der Anzahl Seiten und Funktionen. Nach dem kostenlosen Erstgespräch bekommst du eine Fixofferte mit Pauschalpreis, den du vor dem Start kennst und der sich während des Projekts nicht mehr ändert.",
   },
   {
     question: "Wie lange dauert die Umsetzung?",

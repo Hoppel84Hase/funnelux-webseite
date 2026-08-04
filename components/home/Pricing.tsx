@@ -2,7 +2,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { pricingPackages, pricingNote } from "@/content/pricing";
+import { pricingPackages, pricingNote, pricingMicrocopy } from "@/content/pricing";
 import { cn } from "@/lib/cn";
 
 export function Pricing() {
@@ -23,6 +23,7 @@ export function Pricing() {
             >
               <h3 className="text-lg font-semibold text-text-primary">{pkg.name}</h3>
               <p className="mt-2 text-2xl font-bold text-accent-light">{pkg.priceLabel}</p>
+              <p className="mt-1 text-xs text-text-secondary">{pricingMicrocopy}</p>
               <p className="mt-3 text-sm text-text-secondary">{pkg.description}</p>
 
               <ul className="mt-5 flex-1 space-y-2.5">
