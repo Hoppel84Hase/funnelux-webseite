@@ -7,6 +7,7 @@ type FadeInProps = {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  variant?: "up" | "fade";
 };
 
 type Status = "idle" | "hidden" | "revealing";
@@ -16,7 +17,12 @@ type Status = "idle" | "hidden" | "revealing";
 // kurz ausgeblendet und beim Reinscrollen animiert eingeblendet. Elemente, die
 // schon beim Laden sichtbar sind, bleiben unangetastet, damit es keinen
 // Blink-Effekt gibt.
-export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
+//
+// variant="fade": reiner Opacity-Fade ohne translateY/transform. Wichtig fuer
+// Elemente, deren eigene Position von anderem Code (z. B. GSAP ScrollTrigger)
+// vermessen wird, da ein gleichzeitig laufender Transform diese Messung
+// verfaelschen wuerde.
+export function FadeIn({ children, className, delay = 0, variant = "up" }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("idle");
 
@@ -52,7 +58,8 @@ export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
       style={{ animationDelay: status === "revealing" ? `${delay}ms` : undefined }}
       className={cn(
         status === "hidden" && "opacity-0",
-        status === "revealing" && "motion-safe:animate-fade-up motion-reduce:animate-fade-in",
+        status === "revealing" &&
+          (variant === "fade" ? "animate-fade-in" : "motion-safe:animate-fade-up motion-reduce:animate-fade-in"),
         className
       )}
     >

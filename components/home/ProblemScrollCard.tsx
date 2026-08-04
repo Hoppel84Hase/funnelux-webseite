@@ -41,6 +41,11 @@ export function ProblemScrollCard({ card }: { card: ProblemCard }) {
 
     let cancelled = false;
     let trigger: { kill: () => void } | undefined;
+    let refresh: (() => void) | undefined;
+
+    function handleWindowLoad() {
+      refresh?.();
+    }
 
     import("gsap").then(({ gsap }) =>
       import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
@@ -48,20 +53,29 @@ export function ProblemScrollCard({ card }: { card: ProblemCard }) {
         gsap.registerPlugin(ScrollTrigger);
         trigger = ScrollTrigger.create({
           trigger: cardEl,
-          start: "top 75%",
-          end: "top 30%",
-          scrub: true,
+          start: "top 85%",
+          end: "top 15%",
+          scrub: 0.6,
           onUpdate: (self) => {
             gsap.set(problemEl, { opacity: 1 - self.progress, y: -self.progress * 8 });
             gsap.set(solutionEl, { opacity: self.progress, y: (1 - self.progress) * 8 });
           },
         });
+        refresh = () => ScrollTrigger.refresh();
+
+        // FadeIn (jetzt variant="fade", ohne Transform) veraendert die
+        // Kartengeometrie nicht mehr, trotzdem sollen Layout-Verschiebungen
+        // durch spaet ladende Fonts/Bilder die Trigger-Position nicht
+        // verfaelschen, deshalb nach dem finalen Layout neu kalibrieren.
+        requestAnimationFrame(() => refresh?.());
+        window.addEventListener("load", handleWindowLoad);
       })
     );
 
     return () => {
       cancelled = true;
       trigger?.kill();
+      window.removeEventListener("load", handleWindowLoad);
     };
   }, [reducedMotion]);
 

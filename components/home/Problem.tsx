@@ -14,7 +14,7 @@ export function Problem() {
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {problemCards.map((card, index) => (
-          <FadeIn key={card.title} delay={index * 100}>
+          <FadeIn key={card.title} delay={index * 100} variant="fade">
             <ProblemScrollCard card={card} />
           </FadeIn>
         ))}
