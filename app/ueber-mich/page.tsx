@@ -31,9 +31,7 @@ export default function UeberMichPage() {
 
           <FadeIn delay={100}>
             <p className="text-sm font-medium uppercase tracking-wider text-accent-light">Über mich</p>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">
-              Ich bin Janic Maier
-            </h1>
+            <h1 className="mt-3 text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">Janic</h1>
             <div className="mt-6 space-y-4 text-base text-text-secondary sm:text-lg">
               <p>
                 Ich lebe und arbeite in Winterthur und habe mich auf Funnel Marketing, Webdesign und
