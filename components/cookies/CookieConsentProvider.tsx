@@ -40,6 +40,12 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
       setConsent(stored);
       setHasDecided(true);
       setBannerVisible(false);
+      // Auch fuer wiederkehrende Besucher mit bereits gespeicherter
+      // Entscheidung den aktuellen Consent-Status pushen, nicht nur beim
+      // ersten Entscheid. Sonst kann GTM bei diesen Seitenaufrufen den
+      // Consent-Status nicht auswerten, weil im dataLayer dieser Session nie
+      // ein entsprechendes Event ankommt.
+      pushConsentUpdate(stored);
     }
   }, []);
 
