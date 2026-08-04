@@ -1,6 +1,6 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { ProblemScrollCard } from "@/components/home/ProblemScrollCard";
+import { ProblemSolutionCard } from "@/components/home/ProblemSolutionCard";
 import { problemCards } from "@/content/problems";
 
 export function Problem() {
@@ -14,8 +14,8 @@ export function Problem() {
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {problemCards.map((card, index) => (
-          <FadeIn key={card.title} delay={index * 100} variant="fade">
-            <ProblemScrollCard card={card} />
+          <FadeIn key={card.title} delay={index * 100}>
+            <ProblemSolutionCard card={card} />
           </FadeIn>
         ))}
       </div>
