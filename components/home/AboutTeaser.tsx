@@ -18,7 +18,7 @@ export function AboutTeaser() {
 
         <FadeIn delay={100}>
           <p className="text-sm font-medium uppercase tracking-wider text-accent-light">Über mich</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">Janic</h2>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">Ich bin Janic</h2>
           <p className="mt-5 text-base text-text-secondary sm:text-lg">
             Ich baue Websites und Funnels für Schweizer KMU und Start-ups, direkt aus Winterthur. Als
             Einzelunternehmer sprichst du bei jedem Schritt mit mir persönlich, ohne Übergaben zwischen
