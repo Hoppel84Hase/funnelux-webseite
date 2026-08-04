@@ -36,11 +36,8 @@ export function FadeIn({ children, className, delay = 0, variant = "up" }: FadeI
 
     setStatus("hidden");
 
-    // rootMargin erweitert die Ausloese-Zone um 200px unter den sichtbaren
-    // Viewport, damit die Animation schon einsetzt, bevor das Element
-    // wirklich sichtbar ist. Sonst wirkt sie bei normalem Scrolltempo wie ein
-    // kurzes Aufblitzen, weil sie erst startet, wenn das Element schon fast
-    // im Bild steht.
+    // rootMargin erweitert die Ausloese-Zone etwas unter den sichtbaren
+    // Viewport, damit die Animation kurz vor dem Sichtbarwerden einsetzt.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -50,7 +47,7 @@ export function FadeIn({ children, className, delay = 0, variant = "up" }: FadeI
           }
         });
       },
-      { threshold: 0, rootMargin: "0px 0px 200px 0px" }
+      { threshold: 0, rootMargin: "0px 0px 100px 0px" }
     );
 
     observer.observe(node);
