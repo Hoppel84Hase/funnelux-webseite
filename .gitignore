@@ -32,3 +32,6 @@ next-env.d.ts
 /(1)logo/
 /hf_2026*.svg
 .env*
+
+# versehentlich entpackter GitHub-ZIP-Export im Projektordner
+/funnelux-webseite-main/
