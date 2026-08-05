@@ -41,7 +41,7 @@ export function Footer() {
               <li className="text-text-primary">{company.name}</li>
               <li>{company.street}</li>
               <li>
-                {company.zip} {company.city}
+                CH-{company.zip} {company.city}
               </li>
               <li>
                 <a href={`tel:${company.phoneE164}`} className="hover:text-accent-light">
