@@ -33,9 +33,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "email_required" }, { status: 400 });
   }
 
+  // Brevo validiert das WHATSAPP-Attribut strikt und lehnt Nummern mit
+  // Leerzeichen/Klammern/Bindestrichen ab (getestet: "+41 79 123 45 67"
+  // schlaegt fehl, "+41791234567" geht durch). Das Formular zeigt im
+  // Platzhalter genau das Leerzeichen-Format, deshalb hier bereinigen.
+  const normalizedTelefon = telefon?.replace(/[^\d+]/g, "") ?? "";
+
   const attributes: Record<string, string> = {
     VORNAME: vorname ?? "",
-    WHATSAPP: telefon ?? "",
+    WHATSAPP: normalizedTelefon,
   };
   if (utm?.utm_source) attributes.UTM_SOURCE = utm.utm_source;
   if (utm?.utm_medium) attributes.UTM_MEDIUM = utm.utm_medium;
