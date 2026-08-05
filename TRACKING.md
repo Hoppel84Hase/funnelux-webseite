@@ -21,8 +21,12 @@ Klick auf den Button selbst löst noch kein Tracking-Event aus. Erst beim Absend
 Folgendes, in dieser Reihenfolge:
 
 1. WhatsApp öffnet sich in einem neuen Tab mit einer Nachricht, die Vorname, E-Mail und Telefon enthält.
-2. Die Events `whatsapp_click` und `lead_form_submit` werden gepusht (siehe Tabelle unten).
-3. Im Modal erscheint eine Bestätigung ("Danke, [Vorname]. Du hörst von mir.").
+   Das passiert synchron im Klick-Handler, damit Browser (v. a. Safari/iOS) das nicht als Popup blockieren.
+2. Parallel dazu, nicht abgewartet, geht ein Request an `app/api/lead/route.ts`, der den Kontakt in Brevo
+   anlegt bzw. aktualisiert (siehe Abschnitt 8). Ein Fehlschlag dort wird nur geloggt und hat keinen Einfluss
+   auf WhatsApp.
+3. Die Events `whatsapp_click` und `lead_form_submit` werden gepusht (siehe Tabelle unten).
+4. Im Modal erscheint eine Bestätigung ("Danke, [Vorname]. Du hörst von mir.").
 
 Welche Sektion das Modal geöffnet hat (`hero`, `pricing_funnel`, `header` und so weiter), wird als `section`
 durchgereicht und landet in beiden Events.
@@ -102,3 +106,24 @@ Beim Absenden des Lead-Formulars werden `whatsapp_click` (Feld `whatsapp_section
 beide Events je ein Trigger erstellt werden, der z. B. an Google Ads als Conversion oder an Meta als Custom
 Conversion gemeldet wird. Für Auswertungen, die auch die Herkunft des Leads zeigen sollen, ist
 `lead_form_submit` die vollständigere Wahl, weil dort die UTM-Felder schon mitgeliefert werden.
+
+## 8. Brevo-Kontakt beim Lead-Formular
+
+Beim Absenden des Lead-Formulars wird serverseitig (nicht im Browser) ein Kontakt in Brevo angelegt bzw.
+aktualisiert, über `app/api/lead/route.ts`. Der Brevo-API-Key steckt in der Server-only-Umgebungsvariable
+`BREVO_API_KEY` (kein `NEXT_PUBLIC_`-Prefix, landet nie im Browser-Code).
+
+Übertragen wird:
+
+| Brevo-Feld | Quelle |
+| --- | --- |
+| `email` | E-Mail-Feld des Formulars |
+| `attributes.VORNAME` | Vorname-Feld |
+| `attributes.WHATSAPP` | Telefon-Feld |
+| `attributes.UTM_SOURCE` / `UTM_MEDIUM` / `UTM_CAMPAIGN` / `UTM_CONTENT` / `UTM_TERM` | aus `sessionStorage` (siehe Abschnitt 6), nur wenn tatsächlich ein Wert vorliegt, um bestehende Brevo-Attribute nicht mit leeren Werten zu überschreiben |
+| `listIds` | fest `[14]` |
+| `updateEnabled` | `true`, bestehende Kontakte werden aktualisiert statt einen Fehler zu werfen |
+
+Der Aufruf läuft parallel zur WhatsApp-Weiterleitung, nicht davor. Schlägt er fehl (Brevo nicht erreichbar,
+ungültiger Key, Timeout nach 8 Sekunden), wird der Fehler serverseitig geloggt (in den Vercel-Function-Logs
+sichtbar), die WhatsApp-Weiterleitung findet trotzdem statt.

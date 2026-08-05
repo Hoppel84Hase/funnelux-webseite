@@ -45,9 +45,23 @@ export function LeadModal() {
     const link = buildWhatsAppLink(message);
     setWhatsappLink(link);
 
+    // WhatsApp wird synchron im Klick-Handler geoeffnet, damit Browser
+    // (v. a. Safari/iOS) das nicht als Popup blockieren, weil es nicht mehr
+    // direkt an die Nutzerinteraktion gebunden waere. Der Brevo-Call laeuft
+    // parallel dazu weiter und blockiert die Weiterleitung nicht, ein
+    // Fehlschlag wird nur geloggt.
     window.open(link, "_blank", "noopener,noreferrer");
 
     const utm = readStoredUtm() || {};
+
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, vorname, telefon, utm }),
+    }).catch((error) => {
+      console.error("Kontakt konnte nicht an Brevo uebertragen werden", error);
+    });
+
     trackWhatsAppClick(section ?? "unbekannt");
     trackLeadFormSubmit(section ?? "unbekannt", utm);
 
