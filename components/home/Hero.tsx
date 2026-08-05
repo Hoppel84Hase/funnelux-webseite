@@ -24,7 +24,7 @@ export function Hero() {
           Websites und Funnels, die aus Besuchern Anfragen machen.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base text-text-secondary sm:text-lg">
-          Ich baue Schweizer KMU und Start-ups die komplette Basis für planbare Kundenanfragen. Website,
+          Für Schweizer KMU und Start-ups baue ich die komplette Basis für planbare Kundenanfragen. Website,
           Funnel und Kampagne aus einer Hand, direkt vom Umsetzer, ohne Agentur-Overhead.
         </p>
 
