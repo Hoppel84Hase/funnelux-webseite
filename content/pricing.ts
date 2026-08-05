@@ -21,7 +21,7 @@ export const pricingPackages: PricingPackage[] = [
   },
   {
     name: "Funnel",
-    priceLabel: "ab CHF 5'000",
+    priceLabel: "ab CHF 3'500",
     description: "Für Angebote, die aktiv Anfragen generieren sollen, mit klarer Strecke von Klick zu Kontakt.",
     features: [
       "Landing Page mit klarer Storyline",
@@ -34,7 +34,7 @@ export const pricingPackages: PricingPackage[] = [
   },
   {
     name: "Care",
-    priceLabel: "ab CHF 1'000 mtl.",
+    priceLabel: "ab CHF 500 mtl.",
     description:
       "Für Firmen, deren Seite nicht nur laufen, sondern jeden Monat besser werden soll. Ich werte aus, optimiere und du konzentrierst dich auf dein Kerngeschäft.",
     features: [
