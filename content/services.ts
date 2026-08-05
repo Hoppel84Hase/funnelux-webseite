@@ -53,11 +53,33 @@ export type ServiceDetail = {
 
 export const serviceDetails: ServiceDetail[] = [
   {
-    slug: "websites",
-    name: "Websites",
+    slug: "launch-paket",
+    name: "Launch-Paket",
     size: "large",
     forWhom:
-      "Für Schweizer KMU und Start-ups, die online professionell auftreten wollen und eine Seite brauchen, die Anfragen bringt statt nur zu existieren.",
+      "Für Schweizer KMU und Start-ups, die schnell professionell online gehen wollen. KI-gestützt umgesetzt, mit allem, was für echte Anfragen zählt. Eine günstige Website ist schnell gebaut. Eine Website, die auch rechtlich sauber ist und misst, was sie bringt, macht den eigentlichen Unterschied.",
+    process:
+      "Wir starten mit einem kurzen Gespräch zu deinem Angebot, deiner Zielgruppe und deinen Zielen. Danach baue ich Struktur, Design und die technische Basis. Tracking, Datenschutz und E-Mail-Anbindung sind von Anfang an dabei. Du gibst Feedback in ein bis zwei Runden, dann gehen wir live.",
+    result:
+      "Eine schnelle, mobiloptimierte Website, die dein Angebot klar zeigt, Besucher zu einer Anfrage führt und von Anfang an technisch sauber aufgesetzt ist.",
+    delivered: [
+      "Analyse deines Angebots, deiner Zielgruppe und deiner Konkurrenz",
+      "Struktur und Text pro Seite, abgestimmt auf das, was deine Kunden wissen müssen",
+      "Individuelles Design im Stil deiner Firma, kein Templatelook",
+      "Tracking-Setup, damit du siehst, woher Anfragen kommen",
+      "DSG-konformer Datenschutz und Cookie-Compliance",
+      "Brevo-Anbindung für erste Follow-up-Automation",
+      "Mobiloptimierte Darstellung auf allen Geräten",
+    ],
+    aiAngle:
+      "Ich nutze KI-gestützte Tools für Recherche, Textentwürfe und Code-Umsetzung. Das beschleunigt die Produktion. Die inhaltliche Kontrolle und die letzte Textfassung bleiben bei mir.",
+  },
+  {
+    slug: "pro-paket",
+    name: "Pro-Paket",
+    size: "large",
+    forWhom:
+      "Für Firmen, die eine individuelle Website mit echter Strategie dahinter wollen. Am Ende gehört die Seite zu hundert Prozent ihnen selbst, ohne Abhängigkeit von einer Agentur.",
     process:
       "Wir starten mit einem kurzen Gespräch zu deinem Angebot, deiner Zielgruppe und deinen Zielen. Danach baue ich Struktur und Design, du gibst Feedback in ein bis zwei Runden, dann gehen wir live.",
     result:
@@ -74,11 +96,11 @@ export const serviceDetails: ServiceDetail[] = [
       "Ich nutze KI-gestützte Tools für Recherche, Textentwürfe und Code-Umsetzung. Das beschleunigt die Produktion, die inhaltliche Kontrolle und die letzte Textfassung bleiben bei mir.",
   },
   {
-    slug: "funnels",
-    name: "Funnels",
+    slug: "funnel-paket",
+    name: "Funnel-Paket",
     size: "large",
     forWhom:
-      "Für Anbieter mit einem konkreten Angebot, zum Beispiel einem Kurs, Webinar oder einer Terminbuchung, die gezielt Anfragen oder Anmeldungen sammeln wollen.",
+      "Für Anbieter mit einem konkreten Angebot, die gezielt Anfragen generieren wollen. Website, Werbung und E-Mail-Marketing kommen aus einer Hand, nicht aus drei getrennten Baustellen. Einzeln beauftragt läge der Wert dieser Bausteine bei bis zu CHF 8'800, im Paket sparst du gegenüber der Einzelvergabe.",
     process:
       "Nach der Klärung von Angebot und Zielgruppe baue ich die Landing Page und die E-Mail-Automation, richte das Tracking ein und wir testen den Ablauf gemeinsam, bevor die Kampagne startet.",
     result:

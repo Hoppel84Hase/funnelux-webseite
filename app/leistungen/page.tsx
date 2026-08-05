@@ -2,18 +2,29 @@ import { buildMetadata } from "@/lib/metadata";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceLarge } from "@/components/leistungen/ServiceLarge";
 import { ServiceCompact } from "@/components/leistungen/ServiceCompact";
-import { Pricing } from "@/components/home/Pricing";
+import { LeistungenPricing } from "@/components/leistungen/LeistungenPricing";
+import { ClosingCta } from "@/components/home/ClosingCta";
 import { serviceDetails } from "@/content/services";
+import { leistungenHeader, leistungenClosingCta } from "@/content/leistungenPage";
 
 export const metadata = buildMetadata({
   title: "Leistungen",
   description:
-    "Websites, Funnels, Ads, SEO und Copywriting für Schweizer KMU. Was du konkret bekommst und wie KI-gestützte Prozesse die Umsetzung beschleunigen.",
+    "Launch-Paket, Pro-Paket und Funnel-Paket sowie Ads, SEO und Copywriting für Schweizer KMU. Was du konkret bekommst und wie KI-gestützte Prozesse die Umsetzung beschleunigen.",
   path: "/leistungen",
 });
 
+// Reihenfolge der Leistungsbeschreibungen: Launch vor Pro vor Funnel, ein
+// Neukunde muss zuerst verstehen, was eine Website bedeutet, bevor die
+// komplexere Funnel-Logik folgt. Abweichend von der Reihenfolge der
+// Preiskarten weiter unten (dort Launch / Funnel / Pro wegen des
+// Kompromisseffekts).
+const largeOrder = ["launch-paket", "pro-paket", "funnel-paket"];
+
 export default function LeistungenPage() {
-  const large = serviceDetails.filter((s) => s.size === "large");
+  const large = largeOrder
+    .map((slug) => serviceDetails.find((s) => s.slug === slug))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s));
   const small = serviceDetails.filter((s) => s.size === "small");
 
   return (
@@ -21,9 +32,9 @@ export default function LeistungenPage() {
       <section className="mx-auto max-w-4xl px-4 pt-20 pb-4 text-center sm:px-6 lg:px-8">
         <SectionHeading
           as="h1"
-          eyebrow="Leistungen"
-          title="Alles für planbare Anfragen"
-          subtitle="Website und Funnel als Kernleistung, ergänzt durch Ads, SEO und Copywriting, wo es für dein Vorhaben Sinn ergibt."
+          eyebrow={leistungenHeader.kicker}
+          title={leistungenHeader.title}
+          subtitle={leistungenHeader.subtitle}
         />
       </section>
 
@@ -46,7 +57,13 @@ export default function LeistungenPage() {
         </div>
       </section>
 
-      <Pricing />
+      <LeistungenPricing />
+
+      <ClosingCta
+        title={leistungenClosingCta.title}
+        text={leistungenClosingCta.text}
+        section="leistungen_closing_cta"
+      />
     </>
   );
 }

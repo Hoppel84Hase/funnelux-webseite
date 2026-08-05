@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import type { ServiceDetail } from "@/content/services";
 
 export function ServiceCompact({ service, index = 0 }: { service: ServiceDetail; index?: number }) {
@@ -24,7 +24,13 @@ export function ServiceCompact({ service, index = 0 }: { service: ServiceDetail;
         </div>
 
         <div className="mt-5">
-          <WhatsAppButton section={`leistungen_${service.slug}`} label="Jetzt anfragen" className="w-full" />
+          <Link
+            href="#funnel-paket"
+            className="inline-flex items-center gap-1 text-sm font-medium text-accent-light hover:text-accent"
+          >
+            Enthalten im Funnel-Paket
+            <ArrowIcon className="h-4 w-4" />
+          </Link>
         </div>
       </Card>
     </FadeIn>
@@ -35,6 +41,14 @@ function CheckIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   );
 }
