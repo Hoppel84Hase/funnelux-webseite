@@ -79,7 +79,7 @@ export const serviceDetails: ServiceDetail[] = [
     name: "Pro-Paket",
     size: "large",
     forWhom:
-      "Für Firmen, die eine individuelle Website mit echter Strategie dahinter wollen. Am Ende gehört die Seite zu hundert Prozent ihnen selbst, ohne Abhängigkeit von einer Agentur.",
+      "Für Firmen, die eine individuelle Website mit echter Strategie dahinter wollen. Am Ende gehört die Seite zu hundert Prozent dir selbst, ohne Abhängigkeit von einer Agentur.",
     process:
       "Wir starten mit einem kurzen Gespräch zu deinem Angebot, deiner Zielgruppe und deinen Zielen. Danach baue ich Struktur und Design, du gibst Feedback in ein bis zwei Runden, dann gehen wir live.",
     result:
