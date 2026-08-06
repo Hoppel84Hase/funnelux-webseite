@@ -5,6 +5,8 @@ export const leistungenHeader = {
     "Ein Ansprechpartner, volle technische Tiefe, faire Preise für Deutschschweizer KMU und Start-ups. Kein Agentur-Overhead, keine Kompromisse bei Tracking, Datenschutz oder Strategie.",
 };
 
+export const pricingMicrocopy = "Pauschalpreis nach Fixofferte";
+
 export type BuildPaket = {
   slug: string;
   name: string;

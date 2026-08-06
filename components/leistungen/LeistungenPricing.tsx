@@ -2,8 +2,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { pricingMicrocopy } from "@/content/pricing";
 import {
+  pricingMicrocopy,
   buildPakete,
   buildPricingSubheadline,
   buildPricingFootnote,
