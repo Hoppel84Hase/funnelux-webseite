@@ -9,7 +9,7 @@ import { readStoredUtm } from "@/lib/utm";
 type Step = "form" | "success";
 
 export function LeadModal() {
-  const { isOpen, section, closeModal } = useLeadModal();
+  const { isOpen, section, interest, closeModal } = useLeadModal();
   const [step, setStep] = useState<Step>("form");
   const [vorname, setVorname] = useState("");
   const [email, setEmail] = useState("");
@@ -41,7 +41,8 @@ export function LeadModal() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const message = `Hallo Janic, mein Name ist ${vorname}. Ich interessiere mich für eine Website oder einen Funnel. Meine E-Mail: ${email}, Telefon: ${telefon}.`;
+    const interessenText = interest ?? "eine Website oder einen Funnel";
+    const message = `Hallo Janic, mein Name ist ${vorname}. Ich interessiere mich für ${interessenText}. Meine E-Mail: ${email}, Telefon: ${telefon}.`;
     const link = buildWhatsAppLink(message);
     setWhatsappLink(link);
 

@@ -57,6 +57,7 @@ export function LeistungenPricing() {
                   section={`leistungen_${pkg.slug}`}
                   label="Jetzt anfragen"
                   className="w-full"
+                  interest={`das ${pkg.name}`}
                 />
               </div>
             </Card>
@@ -96,6 +97,7 @@ export function LeistungenPricing() {
                     section={`leistungen_${plan.slug}`}
                     label="Jetzt anfragen"
                     className="w-full"
+                    interest={plan.name}
                   />
                 </div>
               </Card>

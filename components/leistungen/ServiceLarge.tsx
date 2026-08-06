@@ -26,7 +26,11 @@ export function ServiceLarge({ service }: { service: ServiceDetail }) {
             ) : null}
 
             <div className="mt-8">
-              <WhatsAppButton section={`leistungen_${service.slug}`} label="Jetzt anfragen" />
+              <WhatsAppButton
+                section={`leistungen_${service.slug}`}
+                label="Jetzt anfragen"
+                interest={`das ${service.name}`}
+              />
             </div>
           </FadeIn>
 

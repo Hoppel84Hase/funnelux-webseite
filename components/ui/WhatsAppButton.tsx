@@ -9,6 +9,11 @@ type WhatsAppButtonProps = {
   size?: "md" | "lg";
   variant?: "solid" | "outline";
   className?: string;
+  // Konkretisiert, wofuer sich der Interessent interessiert, z. B. "das
+  // Launch-Paket". Fliesst in die vorausgefuellte WhatsApp-Nachricht ein.
+  // Ohne Angabe bleibt die generische Nachricht bestehen (fuer CTAs ohne
+  // Bezug zu einem bestimmten Paket, z. B. Header oder Hero).
+  interest?: string;
 };
 
 const sizeClasses = {
@@ -22,13 +27,14 @@ export function WhatsAppButton({
   size = "md",
   variant = "solid",
   className,
+  interest,
 }: WhatsAppButtonProps) {
   const { openModal } = useLeadModal();
 
   return (
     <button
       type="button"
-      onClick={() => openModal(section)}
+      onClick={() => openModal(section, interest)}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap",
         sizeClasses[size],

@@ -38,6 +38,7 @@ export function Pricing() {
                   section={`home_pricing_${pkg.slug}`}
                   label="Jetzt anfragen"
                   className="w-full"
+                  interest={`das ${pkg.name}`}
                 />
               </div>
             </Card>

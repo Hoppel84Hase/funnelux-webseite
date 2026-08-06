@@ -5,7 +5,8 @@ import { createContext, useCallback, useContext, useMemo, useState } from "react
 type LeadModalContextValue = {
   isOpen: boolean;
   section: string | null;
-  openModal: (section: string) => void;
+  interest: string | null;
+  openModal: (section: string, interest?: string) => void;
   closeModal: () => void;
 };
 
@@ -14,9 +15,11 @@ const LeadModalContext = createContext<LeadModalContextValue | null>(null);
 export function LeadModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [section, setSection] = useState<string | null>(null);
+  const [interest, setInterest] = useState<string | null>(null);
 
-  const openModal = useCallback((s: string) => {
+  const openModal = useCallback((s: string, i?: string) => {
     setSection(s);
+    setInterest(i ?? null);
     setIsOpen(true);
   }, []);
 
@@ -24,7 +27,10 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
     setIsOpen(false);
   }, []);
 
-  const value = useMemo(() => ({ isOpen, section, openModal, closeModal }), [isOpen, section, openModal, closeModal]);
+  const value = useMemo(
+    () => ({ isOpen, section, interest, openModal, closeModal }),
+    [isOpen, section, interest, openModal, closeModal]
+  );
 
   return <LeadModalContext.Provider value={value}>{children}</LeadModalContext.Provider>;
 }
