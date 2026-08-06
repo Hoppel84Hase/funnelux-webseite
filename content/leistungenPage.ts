@@ -130,13 +130,14 @@ export type BuildPaket = {
   highlight?: boolean;
 };
 
-// Reihenfolge bewusst Launch / Funnel / Pro (Kompromisseffekt): die mittlere,
-// hervorgehobene Option wirkt als sichere Wahl zwischen den beiden Extremen.
+// Reihenfolge bewusst Beginner / Funnel / Pro (Kompromisseffekt): die
+// mittlere, hervorgehobene Option wirkt als sichere Wahl zwischen den beiden
+// Extremen. Namen an die Stufen-Bezeichnung der Leistungsseite angeglichen.
 export const buildPakete: BuildPaket[] = [
   {
-    slug: "launch-paket",
-    name: "Launch-Paket",
-    priceLabel: "ab CHF 4'500",
+    slug: "beginner-stufe",
+    name: "Beginner-Stufe",
+    priceLabel: "Preis auf Anfrage",
     description:
       "Schnell online, mit allem, was für echte Anfragen zählt. KI-gestützt umgesetzt, technisch von Anfang an sauber.",
     features: [
@@ -148,9 +149,9 @@ export const buildPakete: BuildPaket[] = [
     ],
   },
   {
-    slug: "funnel-paket",
-    name: "Funnel-Paket",
-    priceLabel: "ab CHF 6'800",
+    slug: "funnel-stufe",
+    name: "Funnel-Stufe",
+    priceLabel: "Preis auf Anfrage",
     description: "Für Angebote, die aktiv Anfragen generieren sollen, mit klarer Strecke von Klick zu Kontakt.",
     features: [
       "Kundenanalyse und Designkonzept",
@@ -163,9 +164,9 @@ export const buildPakete: BuildPaket[] = [
     highlight: true,
   },
   {
-    slug: "pro-paket",
-    name: "Pro-Paket",
-    priceLabel: "ab CHF 6'000",
+    slug: "pro-stufe",
+    name: "Pro-Stufe",
+    priceLabel: "Preis auf Anfrage",
     description: "Individuelle Framer-Website mit echter Strategie dahinter, und danach zu hundert Prozent deine eigene.",
     features: [
       "Konzept- und Wettbewerbsanalyse",
@@ -178,6 +179,6 @@ export const buildPakete: BuildPaket[] = [
 ];
 
 export const buildPricingFootnote =
-  "Die Preise sind Richtwerte und richten sich nach deinem Vorhaben. Abgerechnet wird immer pauschal. Du kennst den Gesamtpreis vor dem Start, und er ändert sich während des Projekts nicht.";
+  "Der genaue Preis richtet sich nach deinem Vorhaben. Abgerechnet wird immer pauschal. Du kennst den Gesamtpreis vor dem Start, und er ändert sich während des Projekts nicht.";
 
 export const pricingMicrocopy = "Pauschalpreis nach Fixofferte";

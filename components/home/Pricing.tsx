@@ -12,7 +12,7 @@ export function Pricing() {
       <SectionHeading
         eyebrow="Preise"
         title="Transparente Pakete ohne Kleingedrucktes"
-        subtitle="Die folgenden Preise sind Ab-Preise. Die genaue Offerte richtet sich nach deinem Vorhaben."
+        subtitle="Die genaue Offerte richtet sich nach deinem Vorhaben."
       />
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -38,7 +38,7 @@ export function Pricing() {
                   section={`home_pricing_${pkg.slug}`}
                   label="Jetzt anfragen"
                   className="w-full"
-                  interest={`das ${pkg.name}`}
+                  interest={`die ${pkg.name}`}
                 />
               </div>
             </Card>
