@@ -17,8 +17,8 @@ export function Footer() {
             <Image src="/images/logo-dark.webp" alt="Funnelux Marketing" width={216} height={55} />
             <p className="mt-4 text-sm font-medium text-accent-light">{company.claim}</p>
             <p className="mt-2 max-w-sm text-sm text-text-secondary">
-              Websites und Funnels für Schweizer KMU und Start-ups. Ein Ansprechpartner, direkter Kontakt,
-              transparente Preise.
+              Websites und Funnels für Schweizer KMU und Start-ups. Ein Ansprechpartner, direkter Kontakt, ein
+              Festpreis, der vorher feststeht.
             </p>
           </div>
 

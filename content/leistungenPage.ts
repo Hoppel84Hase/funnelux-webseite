@@ -2,10 +2,123 @@ export const leistungenHeader = {
   kicker: "Leistungen",
   title: "Alles für planbare Anfragen",
   subtitle:
-    "Ein Ansprechpartner, volle technische Tiefe, faire Preise für Deutschschweizer KMU und Start-ups. Kein Agentur-Overhead, keine Kompromisse bei Tracking, Datenschutz oder Strategie.",
+    "Websites für Schweizer KMU und Start-ups. Individuell gebaut statt aus der Vorlage, von einer Person, die plant, baut und danach erreichbar bleibt.",
+  priceNote: "Zum Preis: Eine feste Zahl nach dem ersten Gespräch, nicht vorher.",
+  priceNoteLink: "Warum",
 };
 
-export const pricingMicrocopy = "Pauschalpreis nach Fixofferte";
+export const leistungenIntro = {
+  title: "Drei Wege, je nachdem wo du stehst",
+  subtitle: "Immer dabei: schnell, auf dem Handy sauber, rechtlich in Ordnung, und die Seite gehört dir.",
+};
+
+export type ServiceTierPoint = {
+  klartext: string;
+  fachbegriff: string;
+};
+
+export type ServiceTier = {
+  slug: string;
+  stufenname: string;
+  zielueberschrift: string;
+  punkte: ServiceTierPoint[];
+  highlight?: boolean;
+};
+
+// Reihenfolge Beginner / Pro / Funnel: aufsteigende Stufen, jede baut explizit
+// auf der vorherigen auf ("Alles aus der ... Stufe, und ..."), deshalb hier
+// keine Kompromisseffekt-Umsortierung wie frueher bei den Preiskarten.
+export const serviceTiers: ServiceTier[] = [
+  {
+    slug: "beginner-stufe",
+    stufenname: "Beginner-Stufe",
+    zielueberschrift: "Du bist gefunden und erreichbar",
+    punkte: [
+      { klartext: "Startseite plus die Unterseiten, die deine Kunden brauchen", fachbegriff: "Mehrseitige Website" },
+      { klartext: "Interessenten bekommen automatisch eine E-Mail von dir", fachbegriff: "E-Mail-Automation" },
+      {
+        klartext: "Du siehst, wie viele Besucher da waren und wie viele sich gemeldet haben",
+        fachbegriff: "Conversion-Tracking",
+      },
+    ],
+  },
+  {
+    slug: "pro-stufe",
+    stufenname: "Pro-Stufe",
+    zielueberschrift: "Alles aus der Beginner-Stufe, und du wirst bei Google gefunden",
+    punkte: [
+      { klartext: "Für jede Leistung eine eigene Seite statt eines Sammelpunkts", fachbegriff: "Leistungsseiten" },
+      {
+        klartext: "Ausgerichtet auf die Wörter, die deine Kunden bei Google eintippen",
+        fachbegriff: "Keyword-Recherche und technisches SEO",
+      },
+    ],
+  },
+  {
+    slug: "funnel-stufe",
+    stufenname: "Funnel-Stufe",
+    zielueberschrift: "Alles aus der Pro-Stufe, und du holst dir Anfragen aktiv",
+    highlight: true,
+    punkte: [
+      { klartext: "Eine Seite, die vom Problem deines Kunden zu deiner Lösung führt", fachbegriff: "Landing Page" },
+      {
+        klartext: "Anzeigen bringen Leute darauf, und du siehst, welche sich lohnt",
+        fachbegriff: "Google Ads, Meta Ads und Kampagnen-Tracking",
+      },
+    ],
+  },
+];
+
+export const leistungenPricingCta = {
+  title: "Was kostet das?",
+  subtitle: "Jedes Projekt ist anders. Deshalb nenne ich eine Zahl erst, wenn ich weiss, worum es geht.",
+  points: [
+    "Nach dem ersten Gespräch eine feste Zahl, keine Spanne",
+    "Sie gilt bis zum Schluss, ohne Nachforderungen",
+    "Passt es nicht, ist es erledigt. Das Gespräch kostet nichts",
+  ],
+  ctaLabel: "Gespräch vereinbaren",
+};
+
+export type CareItem = {
+  slug: string;
+  heading: string;
+  subtext: string;
+};
+
+export const careSectionHeading = {
+  title: "Und danach?",
+  subtitle: "Optional, monatlich, für Kunden mit abgeschlossenem Projekt.",
+};
+
+export const careItems: CareItem[] = [
+  {
+    slug: "wartung",
+    heading: "Damit deine Seite nicht langsam kaputtgeht",
+    subtext: "Wartung · Monitoring · Kurzbericht",
+  },
+  {
+    slug: "ads",
+    heading: "Damit dein Werbegeld nicht ins Leere läuft",
+    subtext: "Kampagnen-Optimierung · Reporting",
+  },
+  {
+    slug: "seo",
+    heading: "Damit du bei Google nicht stehen bleibst",
+    subtext: "Laufende SEO · Inhalte · Support",
+  },
+];
+
+export const leistungenClosingCta = {
+  title: "Lass uns kurz schreiben",
+  text:
+    "Sag mir in zwei Sätzen, was du vorhast. Ich sage dir ehrlich, ob ich der Richtige dafür bin, und wenn nicht, sage ich dir das auch.",
+};
+
+// --- Ab hier: weiterhin von der Startseite verwendet -----------------------
+// components/home/Pricing.tsx importiert buildPakete, buildPricingFootnote
+// und pricingMicrocopy. Auf der Leistungsseite selbst (dieser Umbau) nicht
+// mehr im Einsatz, deshalb hier NICHT entfernen.
 
 export type BuildPaket = {
   slug: string;
@@ -64,61 +177,7 @@ export const buildPakete: BuildPaket[] = [
   },
 ];
 
-export const buildPricingSubheadline = [
-  "Bei mir bekommst du, was sonst nur Agenturen liefern. Tracking, Datenschutz und Automation von Anfang an mitgedacht, aber ohne Team-Aufpreis.",
-  "Einzeln beauftragt, kostet das oft mehr. Aufgeteilt in klare Pakete sieht das so aus.",
-];
-
 export const buildPricingFootnote =
   "Die Preise sind Richtwerte und richten sich nach deinem Vorhaben. Abgerechnet wird immer pauschal. Du kennst den Gesamtpreis vor dem Start, und er ändert sich während des Projekts nicht.";
 
-export const capacityNote =
-  "Ich betreue pro Monat eine begrenzte Anzahl neuer Projekte, damit Qualität und Tempo stimmen.";
-
-export type CarePlan = {
-  slug: string;
-  name: string;
-  priceLabel: string;
-  features: string[];
-};
-
-export const carePlans: CarePlan[] = [
-  {
-    slug: "care-basic",
-    name: "Care Basic",
-    priceLabel: "ab CHF 390 / Mt.",
-    features: ["CMS-Pflege und technische Updates", "Laufendes Monitoring", "Monatlicher Kurzbericht"],
-  },
-  {
-    slug: "care-ads",
-    name: "Care Ads",
-    priceLabel: "ab CHF 850 / Mt.",
-    features: [
-      "Alles aus Care Basic",
-      "Laufende Meta- und Google-Ads-Optimierung",
-      "Monatliches Reporting mit echten Zahlen",
-    ],
-  },
-  {
-    slug: "care-growth",
-    name: "Care Growth",
-    priceLabel: "ab CHF 1'450 / Mt.",
-    features: [
-      "Alles aus Care Ads",
-      "Laufende SEO-Optimierung",
-      "Monatliches Content- und Brevo-Update",
-      "Prioritärer Support, Antwort innert 24 Stunden",
-    ],
-  },
-];
-
-export const careSectionHeading = {
-  title: "Danach, laufend wachsen statt stillstehen",
-  subtitle: "Exklusiv für Kunden, mit denen bereits ein Projekt realisiert wurde.",
-};
-
-export const leistungenClosingCta = {
-  title: "Lass uns kurz schreiben",
-  text:
-    "Du sprichst mit der Person, die auch tatsächlich umsetzt, nicht mit einem Account Manager, der weiterreicht. Schilder mir kurz dein Vorhaben, ich sage dir ehrlich, ob und wie ich helfen kann.",
-};
+export const pricingMicrocopy = "Pauschalpreis nach Fixofferte";
