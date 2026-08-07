@@ -5,6 +5,8 @@ import { FallbackImage } from "@/components/ui/FallbackImage";
 import { Card } from "@/components/ui/Card";
 import { ClosingCta } from "@/components/home/ClosingCta";
 import { principles } from "@/content/principles";
+import { socials } from "@/content/company";
+import { LinkedInIcon } from "@/components/ui/SocialIcons";
 
 export const metadata = buildMetadata({
   title: "Über mich",
@@ -44,6 +46,16 @@ export default function UeberMichPage() {
                 Bauchgefühl.
               </p>
             </div>
+            <a
+              href={socials.linkedin}
+              target="_blank"
+              rel="me noopener noreferrer"
+              aria-label="Janic Maier auf LinkedIn"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent-light hover:text-accent"
+            >
+              <LinkedInIcon className="h-4 w-4" />
+              Mein LinkedIn-Profil ansehen
+            </a>
           </FadeIn>
         </div>
       </section>

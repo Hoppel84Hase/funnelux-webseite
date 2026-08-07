@@ -1,4 +1,4 @@
-import { company } from "@/content/company";
+import { company, socials } from "@/content/company";
 
 export function JsonLd() {
   const schema = {
@@ -26,6 +26,7 @@ export function JsonLd() {
     },
     description:
       "Websites und Sales Funnels für Schweizer KMU und Start-ups, ergänzt durch Ads, SEO und Copywriting.",
+    sameAs: [socials.linkedin, socials.instagram, socials.facebook],
   };
 
   const json = JSON.stringify(schema).replace(/</g, "\\u003c");
