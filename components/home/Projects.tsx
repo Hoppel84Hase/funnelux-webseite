@@ -23,15 +23,6 @@ export function Projects() {
                 <div className="p-6 md:p-8">
                   <h3 className="text-lg font-semibold text-text-primary">{project.name}</h3>
                   <p className="mt-3 text-sm text-text-secondary">{project.description}</p>
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent-light hover:text-accent"
-                  >
-                    Projekt ansehen
-                    <ArrowIcon className="h-4 w-4" />
-                  </a>
                 </div>
               </Card>
             </FadeIn>
@@ -39,13 +30,5 @@ export function Projects() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M8 7h9v9" />
-    </svg>
   );
 }
