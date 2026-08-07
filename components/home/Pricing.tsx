@@ -36,7 +36,7 @@ export function Pricing() {
               <div className="mt-6">
                 <WhatsAppButton
                   section={`home_pricing_${pkg.slug}`}
-                  label="Jetzt anfragen"
+                  label="Anfragen"
                   className="w-full"
                   interest={`die ${pkg.name}`}
                 />

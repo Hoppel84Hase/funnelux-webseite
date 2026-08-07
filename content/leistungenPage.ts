@@ -77,7 +77,7 @@ export const leistungenPricingCta = {
     "Sie gilt bis zum Schluss, ohne Nachforderungen",
     "Passt es nicht, ist es erledigt. Das Gespräch kostet nichts",
   ],
-  ctaLabel: "Gespräch vereinbaren",
+  ctaLabel: "Gespräch mit Janic vereinbaren",
 };
 
 export type CareItem = {

@@ -29,7 +29,7 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <WhatsAppButton section="hero" size="lg" />
+          <WhatsAppButton section="hero" label="Schreib Janic auf WhatsApp" size="lg" />
           <Button href="/leistungen" variant="outline" size="lg">
             Leistungen ansehen
           </Button>

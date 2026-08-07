@@ -36,7 +36,7 @@ export function Solutions() {
                   href="/leistungen"
                   className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent-light hover:text-accent"
                 >
-                  Mehr erfahren
+                  Mehr zu {service.name}
                   <ArrowIcon className="h-4 w-4" />
                 </Link>
               </Card>
@@ -59,7 +59,7 @@ export function Solutions() {
                   href="/leistungen"
                   className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent-light hover:text-accent"
                 >
-                  Mehr erfahren
+                  Mehr zu {service.name}
                   <ArrowIcon className="h-4 w-4" />
                 </Link>
               </Card>

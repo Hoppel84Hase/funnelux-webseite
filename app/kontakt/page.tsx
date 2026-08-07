@@ -37,7 +37,7 @@ export default function KontaktPage() {
               Der schnellste Weg, um mich zu erreichen. Ich antworte innert 24 Stunden.
             </p>
             <div className="mt-6">
-              <WhatsAppButton section="kontakt_hauptweg" size="lg" />
+              <WhatsAppButton section="kontakt_hauptweg" label="Schreib Janic auf WhatsApp" size="lg" />
             </div>
             <p className="mt-3 text-xs text-text-secondary">
               Zuerst öffnet sich ein kurzes Formular für Vorname, E-Mail und Telefon, danach startet WhatsApp.
