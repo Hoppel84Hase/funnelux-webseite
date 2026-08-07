@@ -16,6 +16,12 @@ export const company = {
   claim: "Deine Seite läuft. Dein Business rennt.",
 } as const;
 
+export const socials = {
+  linkedin: "https://www.linkedin.com/in/janic-maier-996705427",
+  instagram: "https://www.instagram.com/funnelux",
+  facebook: "https://www.facebook.com/funnelux",
+} as const;
+
 export const whatsappDefaultMessage =
   "Hallo Janic, ich interessiere mich für eine Website oder einen Funnel. Können wir kurz schreiben?";
 
