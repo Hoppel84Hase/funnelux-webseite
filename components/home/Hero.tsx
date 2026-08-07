@@ -16,6 +16,37 @@ export function Hero() {
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
       <HeroParticlesLoader />
 
+      {/* Hintergrundfoto rechtes Drittel. Reine Dekoration (aria-hidden,
+          leerer alt-Text, pointer-events-none), liegt ueber Glow/Grid/
+          Partikeln, aber unter dem Text-Layer (naechstes Geschwister-Div
+          unten) -- gleiche Stapel-Logik wie die drei Ebenen darueber, ohne
+          eigenes z-index. Unter dem md-Breakpoint kein <img>-Request: die
+          <source> matcht dort nicht, der Browser laedt gar nichts, das
+          Fallback-<img> ist ein eingebettetes 1x1-Pixel. */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 md:block" aria-hidden="true">
+        <picture>
+          <source
+            media="(min-width: 768px)"
+            sizes="33vw"
+            srcSet="
+              /images/hero-janic-desk-480w.webp 480w,
+              /images/hero-janic-desk-640w.webp 640w,
+              /images/hero-janic-desk-800w.webp 800w,
+              /images/hero-janic-desk-1080w.webp 1080w,
+              /images/hero-janic-desk-1440w.webp 1440w
+            "
+          />
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+            alt=""
+            className="h-full w-full object-cover object-[55%_22%]"
+          />
+        </picture>
+        <div className="absolute inset-0 bg-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background" />
+      </div>
+
       <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8">
         <p className="mx-auto mb-6 inline-block rounded-full border border-border-strong bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent-light">
           {company.claim}
