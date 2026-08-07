@@ -18,8 +18,8 @@ export const company = {
 
 export const socials = {
   linkedin: "https://www.linkedin.com/in/janic-maier-996705427",
-  instagram: "https://www.instagram.com/funnelux",
-  facebook: "https://www.facebook.com/funnelux",
+  instagram: "https://www.instagram.com/funnelux.marketing/",
+  facebook: "https://www.facebook.com/profile.php?id=61592244186842",
 } as const;
 
 export const whatsappDefaultMessage =
